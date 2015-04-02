@@ -187,8 +187,8 @@ var boroughs = L.geoJson(null, {
       });
     }
     boroughSearch.push({
-      name: layer.feature.properties.BoroName,
-      source: "Boroughs",
+      name: layer.feature.properties.nom,
+      source: "Quartiers",
       id: L.stamp(layer),
       bounds: layer.getBounds()
     });
@@ -623,11 +623,11 @@ $(document).one("ajaxStop", function () {
     highlight: true,
     hint: false
   }, {
-    name: "Boroughs",
+    name: "Quartiers",
     displayKey: "name",
     source: boroughsBH.ttAdapter(),
     templates: {
-      header: "<h4 class='typeahead-header'>Boroughs</h4>"
+      header: "<h4 class='typeahead-header'>Quartiers</h4>"
     }
   }, {
     name: "Theaters",
@@ -653,7 +653,7 @@ $(document).one("ajaxStop", function () {
       header: "<h4 class='typeahead-header'><img src='assets/img/globe.png' width='25' height='25'>&nbsp;GeoNames</h4>"
     }
   }).on("typeahead:selected", function (obj, datum) {
-    if (datum.source === "Boroughs") {
+    if (datum.source === "Quartiers") {
       map.fitBounds(datum.bounds);
     }
     if (datum.source === "Theaters") {

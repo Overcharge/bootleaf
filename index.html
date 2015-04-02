@@ -60,10 +60,10 @@
             <li class="dropdown">
                 <a class="dropdown-toggle" id="downloadDrop" href="#" role="button" data-toggle="dropdown"><i class="fa fa-cloud-download white"></i>&nbsp;&nbsp;Télécharger les données ouvertes<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="data/boroughs.geojson" download="boroughs.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Boroughs</a></li>
-                  <li><a href="data/subways.geojson" download="subways.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Subway Lines</a></li>
-                  <li><a href="data/DOITT_THEATER_01_13SEPT2010.geojson" download="theaters.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Theaters</a></li>
-                  <li><a href="data/DOITT_MUSEUM_01_13SEPT2010.geojson" download="museums.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Museums</a></li>
+                  <li><a href="data/boroughs.geojson" download="quartiers_lyon_centre.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Quartiers</a></li>
+                  <li><a href="data/subways.geojson" download="metro_tcl.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Métro TCL</a></li>
+                  <li><a href="data/connected_cameras.geojson" download="cameras_connectees.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Caméras connectées</a></li>
+                  <li><a href="data/pistes_cyclables.geojson" download="pistes_cyclables.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Pistes cyclables</a></li>
                 </ul>
             </li>
           </ul>
@@ -76,7 +76,7 @@
         <div class="sidebar-wrapper">
           <div class="panel panel-default" id="features">
             <div class="panel-heading">
-              <h3 class="panel-title">Objets d'intérêt
+              <h3 class="panel-title">Objets connectés
               <button type="button" class="btn btn-xs btn-default pull-right" id="sidebar-hide-btn"><i class="fa fa-chevron-left"></i></button></h3>
             </div>
             <div class="panel-body">
@@ -165,11 +165,11 @@
                     <div class="row">
                       <div class="col-md-4">
                         <div class="form-group">
-                          <label for="first-name">First Name:</label>
+                          <label for="first-name">Prénom:</label>
                           <input type="text" class="form-control" id="first-name">
                         </div>
                         <div class="form-group">
-                          <label for="last-name">Last Name:</label>
+                          <label for="last-name">Nom:</label>
                           <input type="text" class="form-control" id="last-email">
                         </div>
                         <div class="form-group">
@@ -219,10 +219,10 @@
             <h4 class="modal-title">Légende de la carte</h4>
           </div>
           <div class="modal-body">
-            <p>Objets connectés</p>
-            <p>Projets communautaires</p>
-            <p>Utilisateurs</p>
-            <p>Délimitations de quartier</p>
+            <p>Objets connectés : un marqueur rouge avec un symbole</p>
+            <p>Projets communautaires : un marqueur vert avec une feuille d'arbre</p>
+            <p>Utilisateurs :un avatar</p>
+            <p>Délimitations de quartier, lignes de métros, etc. : traits de couleur</p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>

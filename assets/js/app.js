@@ -327,10 +327,23 @@ var cameras = L.geoJson(null, {
   pointToLayer: function(feature, latlng) {
     return L.marker(latlng, {
       icon: L.AwesomeMarkers.icon({
-        icon: 'video-camera',
+        icon: 'camera',
         markerColor: 'red'
       })
     });
+  },
+  onEachFeature: function (feature, layer) {
+    if (feature.properties) {
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nom</th><td>" + feature.properties.nom + "</td></tr>" + "<tr><th>Dernière image capturée</th><td><a class='url-break' href='" + feature.properties.url + "' target='_blank'>" + feature.properties.url + "</a></td></tr>" + "<table>";
+      layer.on({
+        click: function (e) {
+          $("#feature-title").html(feature.properties.NAME);
+          $("#feature-info").html(content);
+          $("#featureModal").modal("show");
+          highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
+        }
+      });
+    }
   }
 });
 $.getJSON("data/connected_cameras.geojson", function (data) {

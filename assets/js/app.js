@@ -140,13 +140,38 @@ var highlightStyle = {
 var boroughs = L.geoJson(null, {
   style: function (feature) {
     return {
-      color: "black",
-      fill: false,
+      color: "green",
+      fill: true,
       opacity: 1,
-      clickable: false
+      clickable: true
     };
   },
   onEachFeature: function (feature, layer) {
+    if (feature.properties) {
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nom du quartier</th><td>" + feature.properties.nom + "</td></tr>" + "<tr><th>Numéro d'arrondissement</th><td>" + feature.properties.numero_arrondissement + "</td></tr>" + "<tr><th>Nombre d'habitants inscrits</th><td>" + feature.properties.user_count + "</td></tr>" + "<table>";
+      layer.on({
+        click: function (e) {
+          $("#feature-title").html(feature.properties.nom_majuscule);
+          $("#feature-info").html(content);
+          $("#featureModal").modal("show");
+          highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
+        },
+        mouseover: function (e) {
+        var layer = e.target;
+        layer.setStyle({
+          weight: 3,
+          color: "#00FFFF",
+          opacity: 1
+        });
+        if (!L.Browser.ie && !L.Browser.opera) {
+          layer.bringToFront();
+        }
+      },
+      mouseout: function (e) {
+        boroughs.resetStyle(e.target);
+      }
+      });
+    }
     boroughSearch.push({
       name: layer.feature.properties.BoroName,
       source: "Boroughs",
@@ -665,3 +690,4 @@ if (!L.Browser.touch) {
 } else {
   L.DomEvent.disableClickPropagation(container);
 }
+

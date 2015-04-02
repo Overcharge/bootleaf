@@ -85,18 +85,18 @@ function syncSidebar() {
   /* Empty sidebar features */
   $("#feature-list tbody").empty();
   /* Loop through theaters layer and add only features which are in the map bounds */
-  theaters.eachLayer(function (layer) {
-    if (map.hasLayer(theaterLayer)) {
+  cameras.eachLayer(function (layer) {
+    if (map.hasLayer(cameraLayer)) {
       if (map.getBounds().contains(layer.getLatLng())) {
-        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/theater.png"></td><td class="feature-name">' + layer.feature.properties.NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/camera_icon.jpeg"></td><td class="feature-name">' + layer.feature.properties.nom + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       }
     }
   });
   /* Loop through museums layer and add only features which are in the map bounds */
-  museums.eachLayer(function (layer) {
-    if (map.hasLayer(museumLayer)) {
+  projects.eachLayer(function (layer) {
+    if (map.hasLayer(projectLayer)) {
       if (map.getBounds().contains(layer.getLatLng())) {
-        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/museum.png"></td><td class="feature-name">' + layer.feature.properties.NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><i width="16" height="18" class="fa fa-thumbs-up"></i></td><td class="feature-name">' + layer.feature.properties.nom + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       }
     }
   });
@@ -569,7 +569,7 @@ var baseLayers = {
 var groupedOverlays = {
   "Objets d'intérêt": {
     "<img src='assets/img/theater.png' width='24' height='28'>&nbsp;Velo'v": theaterLayer,
-    "<img src='assets/img/museum.png' width='24' height='28'>&nbsp;Projets participatifs": projectLayer,
+    "<i width='30' height='36' class='fa fa-thumbs-up'>&nbsp;Projets participatifs": projectLayer,
     "<img src='assets/img/camera_icon.jpeg' width='24' height='28'>&nbsp;Caméras connectées": cameraLayer
   },
   "Filtres urbains": {

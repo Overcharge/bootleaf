@@ -392,8 +392,8 @@ $.getJSON("data/DOITT_MUSEUM_01_13SEPT2010.geojson", function (data) {
 });
 
 map = L.map("map", {
-  zoom: 10,
-  center: [40.702222, -73.979378],
+  zoom: 14,
+  center: [45.758415,4.83241],
   layers: [mapquestOSM, boroughs],//, markerClusters, highlight],
   zoomControl: false,
   attributionControl: false
@@ -497,19 +497,17 @@ if (document.body.clientWidth <= 767) {
 }
 
 var baseLayers = {
-  "Street Map": mapquestOSM,
-  "Aerial Imagery": mapquestOAM,
-  "Imagery with Streets": mapquestHYB
+  "Carte classique": mapquestOSM
 };
 
 var groupedOverlays = {
-  "Points of Interest": {
-    "<img src='assets/img/theater.png' width='24' height='28'>&nbsp;Theaters": theaterLayer,
-    "<img src='assets/img/museum.png' width='24' height='28'>&nbsp;Museums": museumLayer
+  "Objets d'intérêt": {
+    "<img src='assets/img/theater.png' width='24' height='28'>&nbsp;Velo'v": theaterLayer,
+    "<img src='assets/img/museum.png' width='24' height='28'>&nbsp;Projets participatifs": museumLayer
   },
-  "Reference": {
-    "Boroughs": boroughs,
-    "Subway Lines": subwayLines
+  "Filtres": {
+    "Quartiers": boroughs,
+    "Utilisateurs": subwayLines
   }
 };
 

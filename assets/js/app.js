@@ -1,4 +1,5 @@
-var map, featureList, boroughSearch = [], theaterSearch = [], museumSearch = [];
+var map, featureList, boroughSearch = [], theaterSearch = [], museumSearch = [], cameraSearch = [];
+var projectSearch = [];
 
 $(window).resize(function() {
   sizeLayerControl();
@@ -337,19 +338,66 @@ var cameras = L.geoJson(null, {
       var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nom</th><td>" + feature.properties.nom + "</td></tr>" + "<tr><th>Dernière image capturée</th><td><img src='" + feature.properties.url + "'></img></td></tr>" + "<table>";
       layer.on({
         click: function (e) {
-          $("#feature-title").html(feature.properties.NAME);
+          $("#feature-title").html(feature.properties.nom);
           $("#feature-info").html(content);
           $("#featureModal").modal("show");
           highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
         }
+      });
+      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/camera_icon.jpeg"></td><td class="feature-name">' + layer.feature.properties.nom + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      cameraSearch.push({
+        name: layer.feature.properties.nom,
+        address: layer.feature.properties.libellelong,
+        source: "Cameras",
+        id: L.stamp(layer),
+        lat: layer.feature.geometry.coordinates[1],
+        lng: layer.feature.geometry.coordinates[0]
       });
     }
   }
 });
 $.getJSON("data/connected_cameras.geojson", function (data) {
   cameras.addData(data);
-  //map.addLayer(cameraLayer);
+  map.addLayer(cameraLayer);
 });
+
+var projectLayer = L.geoJson(null);
+var projects = L.geoJson(null, {
+  pointToLayer: function(feature, latlng) {
+    return L.marker(latlng, {
+      icon: L.AwesomeMarkers.icon({
+        icon: 'thumbs-up',
+        markerColor: 'blue'
+      })
+    });
+  },
+  onEachFeature: function (feature, layer) {
+    if (feature.properties) {
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nom</th><td>" + feature.properties.nom + "</td></tr>" + "<tr><th>Description</th><td>" + feature.properties.description + "</td></tr>" + "<table>";
+      layer.on({
+        click: function (e) {
+          $("#feature-title").html(feature.properties.nom);
+          $("#feature-info").html(content);
+          $("#featureModal").modal("show");
+          highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
+        }
+      });
+      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/camera_icon.jpeg"></td><td class="feature-name">' + layer.feature.properties.nom + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      projectSearch.push({
+        name: layer.feature.properties.nom,
+        source: "Projects",
+        id: L.stamp(layer),
+        lat: layer.feature.geometry.coordinates[1],
+        lng: layer.feature.geometry.coordinates[0]
+      });
+    }
+  }
+});
+$.getJSON("data/projects.geojson", function (data) {
+  projects.addData(data);
+  map.addLayer(projectLayer);
+});
+
 
 /* Empty layer placeholder to add to layer control for listening when to add/remove museums to markerClusters layer */
 var museumLayer = L.geoJson(null);
@@ -415,6 +463,10 @@ map.on("overlayadd", function(e) {
     markerClusters.addLayer(cameras);
     syncSidebar();
   }
+  if (e.layer === projectLayer) {
+    markerClusters.addLayer(projects);
+    syncSidebar();
+  }
 });
 
 map.on("overlayremove", function(e) {
@@ -428,6 +480,10 @@ map.on("overlayremove", function(e) {
   }
   if (e.layer === cameraLayer) {
     markerClusters.removeLayer(cameras);
+    syncSidebar();
+  }
+  if (e.layer === projectLayer) {
+    markerClusters.removeLayer(projects);
     syncSidebar();
   }
 });
@@ -486,9 +542,9 @@ var locateControl = L.control.locate({
   icon: "icon-direction",
   metric: false,
   strings: {
-    title: "My location",
-    popup: "You are within {distance} {unit} from this point",
-    outsideMapBoundsMsg: "You seem located outside the boundaries of the map"
+    title: "Ma géolocalisation",
+    popup: "Vous êtes à {distance} {unit} de cet endroit",
+    outsideMapBoundsMsg: "Vous êtes en dehors des limites de la carte"
   },
   locateOptions: {
     maxZoom: 18,
@@ -513,8 +569,8 @@ var baseLayers = {
 var groupedOverlays = {
   "Objets d'intérêt": {
     "<img src='assets/img/theater.png' width='24' height='28'>&nbsp;Velo'v": theaterLayer,
-    "<img src='assets/img/museum.png' width='24' height='28'>&nbsp;Projets participatifs": museumLayer,
-    "<img src='assets/img/museum.png' width='24' height='28'>&nbsp;Caméras connectées": cameraLayer
+    "<img src='assets/img/museum.png' width='24' height='28'>&nbsp;Projets participatifs": projectLayer,
+    "<img src='assets/img/camera_icon.jpeg' width='24' height='28'>&nbsp;Caméras connectées": cameraLayer
   },
   "Filtres urbains": {
     "Quartiers": boroughs,
@@ -559,6 +615,16 @@ $(document).one("ajaxStop", function () {
     },
     queryTokenizer: Bloodhound.tokenizers.whitespace,
     local: boroughSearch,
+    limit: 10
+  });
+
+  var camerasBH = new Bloodhound({
+    name: "Cameras",
+    datumTokenizer: function(d) {
+      return Bloodhound.tokenizers.whitespace(d.name);
+    },
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    local: cameraSearch,
     limit: 10
   });
 
@@ -616,6 +682,7 @@ $(document).one("ajaxStop", function () {
   theatersBH.initialize();
   museumsBH.initialize();
   geonamesBH.initialize();
+  camerasBH.initialize();
 
   /* instantiate the typeahead UI */
   $("#searchbox").typeahead({
@@ -623,7 +690,7 @@ $(document).one("ajaxStop", function () {
     highlight: true,
     hint: false
   }, {
-    name: "Quartiers",
+    name: "Boroughs",
     displayKey: "name",
     source: boroughsBH.ttAdapter(),
     templates: {
@@ -635,6 +702,14 @@ $(document).one("ajaxStop", function () {
     source: theatersBH.ttAdapter(),
     templates: {
       header: "<h4 class='typeahead-header'><img src='assets/img/theater.png' width='24' height='28'>&nbsp;Theaters</h4>",
+      suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
+    }
+  }, {
+    name: "Cameras",
+    displayKey: "name",
+    source: camerasBH.ttAdapter(),
+    templates: {
+      header: "<h4 class='typeahead-header'><img src='assets/img/camera_icon.jpeg' width='24' height='28'>&nbsp;Caméras connectées</h4>",
       suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
     }
   }, {
@@ -665,9 +740,9 @@ $(document).one("ajaxStop", function () {
         map._layers[datum.id].fire("click");
       }
     }
-    if (datum.source === "Museums") {
-      if (!map.hasLayer(museumLayer)) {
-        map.addLayer(museumLayer);
+    if (datum.source === "Cameras") {
+      if (!map.hasLayer(cameraLayer)) {
+        map.addLayer(cameraLayer);
       }
       map.setView([datum.lat, datum.lng], 17);
       if (map._layers[datum.id]) {

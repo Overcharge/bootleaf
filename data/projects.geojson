@@ -1,0 +1,10 @@
+{
+"type": "FeatureCollection",
+"features": [
+{"type": "Feature", "properties": { "nom":"Projet de Pak", "description":"Hello world" }, "geometry": {"type": "Point", "coordinates": [ 4.825600, 45.750514] } },
+{"type": "Feature", "properties": { "nom":"Eolienne sur un toit d'immeuble", "description":"Une super éolienne qui produirait une énergie propre, dans un endroit totalement inaccessible au public" }, "geometry": {"type": "Point", "coordinates": [ 4.848581, 45.743123] } },
+{"type": "Feature", "properties": { "nom":"project1", "description":"Hello world" }, "geometry": {"type": "Point", "coordinates": [ 4.822478, 45.753372] } },
+{"type": "Feature", "properties": { "nom":"project2", "description":"Hello world" }, "geometry": {"type": "Point", "coordinates": [ 4.828220, 45.764552] } },
+{"type": "Feature", "properties": { "nom":"project3", "description":"Hello world" }, "geometry": {"type": "Point", "coordinates": [ 4.827077, 45.768762] } }
+]
+}

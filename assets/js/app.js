@@ -137,6 +137,19 @@ var highlightStyle = {
   radius: 10
 };
 
+var pistes_cyclables = L.geoJson(null, {
+  style: function (feature) {
+    return {
+      color: "black",
+      weight: 2,
+      opacity: 1
+    };
+  }
+});
+$.getJSON("data/pistes_cyclables.geojson", function (data) {
+  pistes_cyclables.addData(data);
+});
+
 var boroughs = L.geoJson(null, {
   style: function (feature) {
     return {
@@ -309,6 +322,22 @@ $.getJSON("data/DOITT_THEATER_01_13SEPT2010.geojson", function (data) {
   map.addLayer(theaterLayer);
 });
 
+var cameraLayer = L.geoJson(null);
+var cameras = L.geoJson(null, {
+  pointToLayer: function(feature, latlng) {
+    return L.marker(latlng, {
+      icon: L.AwesomeMarkers.icon({
+        icon: 'video-camera',
+        markerColor: 'red'
+      })
+    });
+  }
+});
+$.getJSON("data/connected_cameras.geojson", function (data) {
+  cameras.addData(data);
+  //map.addLayer(cameraLayer);
+});
+
 /* Empty layer placeholder to add to layer control for listening when to add/remove museums to markerClusters layer */
 var museumLayer = L.geoJson(null);
 var museums = L.geoJson(null, {
@@ -354,7 +383,7 @@ $.getJSON("data/DOITT_MUSEUM_01_13SEPT2010.geojson", function (data) {
 map = L.map("map", {
   zoom: 14,
   center: [45.758415,4.83241],
-  layers: [mapquestOSM, boroughs],//, markerClusters, highlight],
+  layers: [mapquestOSM, boroughs, markerClusters],//, highlight],
   zoomControl: false,
   attributionControl: false
 });
@@ -369,6 +398,10 @@ map.on("overlayadd", function(e) {
     markerClusters.addLayer(museums);
     syncSidebar();
   }
+  if (e.layer === cameraLayer) {
+    markerClusters.addLayer(cameras);
+    syncSidebar();
+  }
 });
 
 map.on("overlayremove", function(e) {
@@ -378,6 +411,10 @@ map.on("overlayremove", function(e) {
   }
   if (e.layer === museumLayer) {
     markerClusters.removeLayer(museums);
+    syncSidebar();
+  }
+  if (e.layer === cameraLayer) {
+    markerClusters.removeLayer(cameras);
     syncSidebar();
   }
 });
@@ -463,11 +500,13 @@ var baseLayers = {
 var groupedOverlays = {
   "Objets d'intérêt": {
     "<img src='assets/img/theater.png' width='24' height='28'>&nbsp;Velo'v": theaterLayer,
-    "<img src='assets/img/museum.png' width='24' height='28'>&nbsp;Projets participatifs": museumLayer
+    "<img src='assets/img/museum.png' width='24' height='28'>&nbsp;Projets participatifs": museumLayer,
+    "<img src='assets/img/museum.png' width='24' height='28'>&nbsp;Caméras connectées": cameraLayer
   },
-  "Filtres": {
+  "Filtres urbains": {
     "Quartiers": boroughs,
-    "Lignes de métro & funiculaires": subwayLines
+    "Lignes de métro & funiculaires": subwayLines,
+    "Pistes cyclables": pistes_cyclables
   }
 };
 

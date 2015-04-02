@@ -186,87 +186,46 @@ $.getJSON("data/boroughs.geojson", function (data) {
 
 var subwayLines = L.geoJson(null, {
   style: function (feature) {
-    if (feature.properties.route_id === "1" || feature.properties.route_id === "2" || feature.properties.route_id === "3") {
+    if (feature.properties.ligne === "A") {
       return {
-        color: "#ff3135",
-        weight: 3,
+        color: "#EE3897",
+        weight: 5,
         opacity: 1
       };
     }
-    if (feature.properties.route_id === "4" || feature.properties.route_id === "5" || feature.properties.route_id === "6") {
+    if (feature.properties.ligne === "B") {
       return {
-        color: "#009b2e",
-        weight: 3,
+        color: "#007DC5",
+        weight: 5,
         opacity: 1
       };
     }
-    if (feature.properties.route_id === "7") {
+    if (feature.properties.ligne === "F1" || feature.properties.ligne === "F2") {
       return {
-        color: "#ce06cb",
-        weight: 3,
+        color: "#8CC751",
+        weight: 5,
         opacity: 1
       };
     }
-    if (feature.properties.route_id === "A" || feature.properties.route_id === "C" || feature.properties.route_id === "E" || feature.properties.route_id === "SI" || feature.properties.route_id === "H") {
+
+    if (feature.properties.ligne === "D") {
       return {
-        color: "#fd9a00",
-        weight: 3,
+        color: "#00AB4F",
+        weight: 5,
         opacity: 1
       };
     }
-    if (feature.properties.route_id === "Air") {
+    if (feature.properties.ligne === "C") {
       return {
-        color: "#ffff00",
-        weight: 3,
-        opacity: 1
-      };
-    }
-    if (feature.properties.route_id === "B" || feature.properties.route_id === "D" || feature.properties.route_id === "F" || feature.properties.route_id === "M") {
-      return {
-        color: "#ffff00",
-        weight: 3,
-        opacity: 1
-      };
-    }
-    if (feature.properties.route_id === "G") {
-      return {
-        color: "#9ace00",
-        weight: 3,
-        opacity: 1
-      };
-    }
-    if (feature.properties.route_id === "FS" || feature.properties.route_id === "GS") {
-      return {
-        color: "#6e6e6e",
-        weight: 3,
-        opacity: 1
-      };
-    }
-    if (feature.properties.route_id === "J" || feature.properties.route_id === "Z") {
-      return {
-        color: "#976900",
-        weight: 3,
-        opacity: 1
-      };
-    }
-    if (feature.properties.route_id === "L") {
-      return {
-        color: "#969696",
-        weight: 3,
-        opacity: 1
-      };
-    }
-    if (feature.properties.route_id === "N" || feature.properties.route_id === "Q" || feature.properties.route_id === "R") {
-      return {
-        color: "#ffff00",
-        weight: 3,
+        color: "#F99D1C",
+        weight: 5,
         opacity: 1
       };
     }
   },
   onEachFeature: function (feature, layer) {
     if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Division</th><td>" + feature.properties.Division + "</td></tr>" + "<tr><th>Line</th><td>" + feature.properties.Line + "</td></tr>" + "<table>";
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Ligne</th><td>" + feature.properties.ligne + "</td></tr>" + "<tr><th>Libellé</th><td>" + feature.properties.libelle + "</td></tr>" + "<table>";
       layer.on({
         click: function (e) {
           $("#feature-title").html(feature.properties.Line);
@@ -507,7 +466,7 @@ var groupedOverlays = {
   },
   "Filtres": {
     "Quartiers": boroughs,
-    "Utilisateurs": subwayLines
+    "Lignes de métro & funiculaires": subwayLines
   }
 };
 

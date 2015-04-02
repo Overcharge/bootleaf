@@ -143,6 +143,7 @@ var boroughs = L.geoJson(null, {
       color: "green",
       fill: true,
       opacity: 1,
+      weight: 1,
       clickable: true
     };
   },

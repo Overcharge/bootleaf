@@ -9,7 +9,7 @@
     <meta name="theme-color" content="#000000">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>EcoQuartier participatif</title>
+    <title>EcoBoro - adoptez un comportement vertueux, et améliorez votre quartier de façon collaborative  !</title>
 
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -36,7 +36,8 @@
             <a href="#" class="navbar-icon pull-right visible-xs" id="nav-btn"><i class="fa fa-bars fa-lg white"></i></a>
             <a href="#" class="navbar-icon pull-right visible-xs" id="sidebar-toggle-btn"><i class="fa fa-search fa-lg white"></i></a>
           </div>
-          <a class="navbar-brand" href="#">EcoQuartier participatif</a>
+          <a class="navbar-brand" href="#">EcoBoro</a>
+          <p class="navbar-text navbar-left">Le quartier participatif</p>
         </div>
         <div class="navbar-collapse collapse">
           <form class="navbar-form navbar-right" role="search">
@@ -46,7 +47,7 @@
             </div>
           </form>
           <ul class="nav navbar-nav">
-            <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="list-btn"><i class="fa fa-list white"></i>&nbsp;&nbsp;Objets d'intérêt</a></li>
+            <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="list-btn"><i class="fa fa-list white"></i>&nbsp;&nbsp;Explorer</a></li>
             <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="about-btn"><i class="fa fa-question-circle white"></i>&nbsp;&nbsp;A propos</a></li>
             <li class="dropdown">
               <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-globe white"></i>&nbsp;&nbsp;Outils <b class="caret"></b></a>
@@ -58,7 +59,7 @@
               </ul>
             </li>
             <li class="dropdown">
-                <a class="dropdown-toggle" id="downloadDrop" href="#" role="button" data-toggle="dropdown"><i class="fa fa-cloud-download white"></i>&nbsp;&nbsp;Télécharger les données ouvertes<b class="caret"></b></a>
+                <a class="dropdown-toggle" id="downloadDrop" href="#" role="button" data-toggle="dropdown"><i class="fa fa-cloud-download white"></i>&nbsp;&nbsp;Données<b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li><a href="data/boroughs.geojson" download="quartiers_lyon_centre.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Quartiers</a></li>
                   <li><a href="data/subways.geojson" download="metro_tcl.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Métro TCL</a></li>
@@ -67,6 +68,8 @@
                 </ul>
             </li>
           </ul>
+          <p class="navbar-text navbar-right">Sysvarren | 2537 points</p>
+          <img class= "navbar-right" src="assets/img/avatar.jpg">
         </div><!--/.navbar-collapse -->
       </div>
     </div>
@@ -76,7 +79,7 @@
         <div class="sidebar-wrapper">
           <div class="panel panel-default" id="features">
             <div class="panel-heading">
-              <h3 class="panel-title">Objets d'intérêt
+              <h3 class="panel-title">Objets d'intérêt par proximité
               <button type="button" class="btn btn-xs btn-default pull-right" id="sidebar-hide-btn"><i class="fa fa-chevron-left"></i></button></h3>
             </div>
             <div class="panel-body">
@@ -123,7 +126,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">Bienvenue dans EcoQuartier participatif !</h4>
+            <h4 class="modal-title">Bienvenue dans EcoBoro !</h4>
           </div>
           <div class="modal-body">
             <ul class="nav nav-tabs" id="aboutTabs">
@@ -133,10 +136,10 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-globe"></i>&nbsp;Métadonnées <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#boroughs-tab" data-toggle="tab">Boroughs</a></li>
-                  <li><a href="#subway-lines-tab" data-toggle="tab">Subway Lines</a></li>
-                  <li><a href="#theaters-tab" data-toggle="tab">Theaters</a></li>
-                  <li><a href="#museums-tab" data-toggle="tab">Museums</a></li>
+                  <li><a href="#boroughs-tab" data-toggle="tab">Quartiers</a></li>
+                  <li><a href="#subway-lines-tab" data-toggle="tab">Métro TCL</a></li>
+                  <li><a href="#theaters-tab" data-toggle="tab">Velo'v</a></li>
+                  <li><a href="#museums-tab" data-toggle="tab">Caméras connectées</a></li>
                 </ul>
               </li>
             </ul>

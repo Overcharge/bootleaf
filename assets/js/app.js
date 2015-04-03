@@ -96,7 +96,7 @@ function syncSidebar() {
   projects.eachLayer(function (layer) {
     if (map.hasLayer(projectLayer)) {
       if (map.getBounds().contains(layer.getLatLng())) {
-        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><i width="16" height="18" class="fa fa-thumbs-up"></i></td><td class="feature-name">' + layer.feature.properties.nom + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><i width="16" height="18" class="fa fa-comments-o"></i></td><td class="feature-name">' + layer.feature.properties.nom + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       }
     }
   });
@@ -328,8 +328,9 @@ var cameras = L.geoJson(null, {
   pointToLayer: function(feature, latlng) {
     return L.marker(latlng, {
       icon: L.AwesomeMarkers.icon({
-        icon: 'camera',
-        markerColor: 'red'
+        icon: 'video-camera',
+        markerColor: 'red',
+        prefix: 'fa'
       })
     });
   },
@@ -366,8 +367,9 @@ var projects = L.geoJson(null, {
   pointToLayer: function(feature, latlng) {
     return L.marker(latlng, {
       icon: L.AwesomeMarkers.icon({
-        icon: 'thumbs-up',
-        markerColor: 'blue'
+        icon: 'comments-o',
+        markerColor: 'blue',
+        prefix: 'fa'
       })
     });
   },
@@ -568,9 +570,9 @@ var baseLayers = {
 
 var groupedOverlays = {
   "Objets d'intérêt": {
-    "<img src='assets/img/theater.png' width='24' height='28'>&nbsp;Velo'v": theaterLayer,
-    "<i width='30' height='36' class='fa fa-thumbs-up'>&nbsp;Projets participatifs": projectLayer,
-    "<img src='assets/img/camera_icon.jpeg' width='24' height='28'>&nbsp;Caméras connectées": cameraLayer
+    "<i width='30' height='36' class='fa fa-bicycle'>&nbsp;Velo'v": theaterLayer,
+    "<i width='30' height='36' class='fa fa-comments-o'>&nbsp;Projets participatifs": projectLayer,
+    "<i width='30' height='36' class='fa fa-video-camera'>&nbsp;Caméras connectées": cameraLayer
   },
   "Filtres urbains": {
     "Quartiers": boroughs,
@@ -709,7 +711,7 @@ $(document).one("ajaxStop", function () {
     displayKey: "name",
     source: camerasBH.ttAdapter(),
     templates: {
-      header: "<h4 class='typeahead-header'><img src='assets/img/camera_icon.jpeg' width='24' height='28'>&nbsp;Caméras connectées</h4>",
+      header: "<h4 class='typeahead-header'><i width='30' height='36' class='fa fa-video-camera'>&nbsp;Caméras connectées</h4>",
       suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
     }
   }, {

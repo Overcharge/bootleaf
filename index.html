@@ -48,25 +48,16 @@
           </form>
           <ul class="nav navbar-nav">
             <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="list-btn"><i class="fa fa-list white"></i>&nbsp;&nbsp;Explorer</a></li>
-            <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="about-btn"><i class="fa fa-question-circle white"></i>&nbsp;&nbsp;A propos</a></li>
+            <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="about-btn"><i class="fa fa-users white"></i>&nbsp;&nbsp;Actions & communauté</a></li>
             <li class="dropdown">
-              <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-globe white"></i>&nbsp;&nbsp;Outils <b class="caret"></b></a>
+              <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-globe white"></i>&nbsp;&nbsp;Carte <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="full-extent-btn"><i class="fa fa-arrows-alt"></i>&nbsp;&nbsp;Recentrer la carte</a></li>
                 <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="legend-btn"><i class="fa fa-picture-o"></i>&nbsp;&nbsp;Légende de la carte</a></li>
                 <li class="divider hidden-xs"></li>
-                <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="login-btn"><i class="fa fa-user"></i>&nbsp;&nbsp;Se connecter</a></li>
               </ul>
             </li>
-            <li class="dropdown">
-                <a class="dropdown-toggle" id="downloadDrop" href="#" role="button" data-toggle="dropdown"><i class="fa fa-cloud-download white"></i>&nbsp;&nbsp;Données<b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="data/boroughs.geojson" download="quartiers_lyon_centre.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Quartiers</a></li>
-                  <li><a href="data/subways.geojson" download="metro_tcl.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Métro TCL</a></li>
-                  <li><a href="data/connected_cameras.geojson" download="cameras_connectees.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Caméras connectées</a></li>
-                  <li><a href="data/pistes_cyclables.geojson" download="pistes_cyclables.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Pistes cyclables</a></li>
-                </ul>
-            </li>
+            <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="about-btn"><i class="fa fa-question white"></i>&nbsp;&nbsp;FAQ</a></li>
           </ul>
           <p class="navbar-text navbar-right">Sysvarren | 2537 points</p>
           <img class= "navbar-right" src="assets/img/avatar.jpg">
@@ -126,26 +117,28 @@
         <div class="modal-content">
           <div class="modal-header">
             <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">Bienvenue dans EcoBoro !</h4>
+            <h4 class="modal-title">Bienvenue dans EcoBoro, Sysvarren.</h4>
           </div>
           <div class="modal-body">
             <ul class="nav nav-tabs" id="aboutTabs">
-              <li class="active"><a href="#about" data-toggle="tab"><i class="fa fa-question-circle"></i>&nbsp;A propos du projet</a></li>
-              <li><a href="#contact" data-toggle="tab"><i class="fa fa-envelope"></i>&nbsp;Nous contacter</a></li>
-              <li><a href="#disclaimer" data-toggle="tab"><i class="fa fa-exclamation-circle"></i>&nbsp;Avertissement</a></li>
+              <li class="active"><a href="#about" data-toggle="tab"><i class="fa fa-heartbeat"></i>&nbsp;Communauté</a></li>
+              <li><a href="#vosActions" data-toggle="tab"><i class="fa fa-star-o"></i>&nbsp;Vos actions</a></li>
+              <li><a href="#services" data-toggle="tab"><i class="fa fa-bolt"></i>&nbsp;Services associés</a></li>
+              <li><a href="#inbox">Boîte de réception <span class="badge">42</span></a>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-globe"></i>&nbsp;Métadonnées <b class="caret"></b></a>
+                <a class="dropdown-toggle" id="downloadDrop" href="#" role="button" data-toggle="dropdown"><i class="fa fa-cloud-download"></i>&nbsp;&nbsp;Télécharger les données<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#boroughs-tab" data-toggle="tab">Quartiers</a></li>
-                  <li><a href="#subway-lines-tab" data-toggle="tab">Métro TCL</a></li>
-                  <li><a href="#theaters-tab" data-toggle="tab">Velo'v</a></li>
-                  <li><a href="#museums-tab" data-toggle="tab">Caméras connectées</a></li>
+                  <li><a href="data/boroughs.geojson" download="quartiers_lyon_centre.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Quartiers</a></li>
+                  <li><a href="data/subways.geojson" download="metro_tcl.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Métro TCL</a></li>
+                  <li><a href="data/connected_cameras.geojson" download="cameras_connectees.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Caméras connectées</a></li>
+                  <li><a href="data/pistes_cyclables.geojson" download="pistes_cyclables.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Pistes cyclables</a></li>
                 </ul>
-              </li>
+            </li>
             </ul>
+
             <div class="tab-content" id="aboutTabsContent">
               <div class="tab-pane fade active in" id="about">
-                <p>A simple, responsive template for building web mapping applications with <a href="http://getbootstrap.com/">Bootstrap 3</a>, <a href="http://leafletjs.com/" target="_blank">Leaflet</a>, and <a href="http://twitter.github.io/typeahead.js/" target="_blank">typeahead.js</a>. Open source, MIT licensed, and available on <a href="https://github.com/bmcbride/bootleaf" target="_blank">GitHub</a>.</p>
+                <p>EcoBoro est une plateforme </p>
                 <div class="panel panel-primary">
                   <div class="panel-heading">Features</div>
                   <ul class="list-group">
@@ -158,57 +151,17 @@
                   </ul>
                 </div>
               </div>
-              <div id="disclaimer" class="tab-pane fade text-danger">
-                <p>The data provided on this site is for informational and planning purposes only.</p>
-                <p>Absolutely no accuracy or completeness guarantee is implied or intended. All information on this map is subject to such variations and corrections as might result from a complete title search and/or accurate field survey.</p>
+              <div id="services" class="tab-pane fade">
+                <h2>CitéVerte</h2>
+                <h2>EDF Raspberric conso temps réel</h2>
               </div>
-              <div class="tab-pane fade" id="contact">
-                <form id="contact-form">
-                  <div class="well well-sm">
-                    <div class="row">
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label for="first-name">Prénom:</label>
-                          <input type="text" class="form-control" id="first-name">
-                        </div>
-                        <div class="form-group">
-                          <label for="last-name">Nom:</label>
-                          <input type="text" class="form-control" id="last-email">
-                        </div>
-                        <div class="form-group">
-                          <label for="email">Email:</label>
-                          <input type="text" class="form-control" id="email">
-                        </div>
-                      </div>
-                      <div class="col-md-8">
-                        <label for="message">Message:</label>
-                        <textarea class="form-control" rows="8" id="message"></textarea>
-                      </div>
-                      <div class="col-md-12">
-                        <p>
-                          <button type="submit" class="btn btn-primary pull-right" data-dismiss="modal">Submit</button>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div>
-              <div class="tab-pane fade" id="boroughs-tab">
-                <p>Données des périmètres de Conseils de quartier de la Ville de Lyon) <a href="http://data.grandlyon.com/citoyennete/pfrimftre-de-conseil-de-quartier-de-la-ville-de-lyon/" target="_blank">Data Grand Lyon</a></p>
-              </div>
-              <div class="tab-pane fade" id="subway-lines-tab">
-                <p><a href="http://data.grandlyon.com/equipements/lignes-de-mftro-et-funiculaire-du-rfseau-tcl/" target="_blank">Données des lignes de métro et funiculaires du réseau TCL</a> <a href="http://data.grandlyon.com/equipements/lignes-de-mftro-et-funiculaire-du-rfseau-tcl/" target="_blank">Data Grand Lyon</a></p>
-              </div>
-              <div class="tab-pane fade" id="theaters-tab">
-                <p>Theater data courtesy of <a href="https://data.cityofnewyork.us/Recreation/Theaters/kdu2-865w" target="_blank">NYC Department of Information & Telecommunications (DoITT)</a></p>
-              </div>
-              <div class="tab-pane fade" id="museums-tab">
-                <p>Museum data courtesy of <a href="https://data.cityofnewyork.us/Recreation/Museums-and-Galleries/sat5-adpb" target="_blank">NYC Department of Information & Telecommunications (DoITT)</a></p>
+              <div id="vosActions" class="tab-pane fade">
+                <p>Vos actions & points</p>
               </div>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->

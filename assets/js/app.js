@@ -1,5 +1,5 @@
 var map, featureList, boroughSearch = [], bicycleParkingSearch = [], cameraSearch = [];
-var projectSearch = [];
+var projectSearch = [], velovSearch = [];
 
 $(window).resize(function() {
   sizeLayerControl();
@@ -344,6 +344,27 @@ var velovs = L.geoJson(null, {
       })
     });
   },
+  onEachFeature: function (feature, layer) {
+    if (feature.properties) {
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nom</th><td>" + feature.properties.name + "</td></tr>" + "<tr><th>Dernière image capturée</th><td><img width='400' src='" + feature.properties.url + "'></img></td></tr>" + "<table>";
+      layer.on({
+        click: function (e) {
+          $("#feature-title").html("Station Velo'v");
+          $("#feature-info").html(content);
+          $("#featureModal").modal("show");
+          highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
+        }
+      });
+      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/velov.png"></td><td class="feature-name">' + layer.feature.properties.name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      velovSearch.push({
+        name: layer.feature.properties.name,
+        source: "Velovs",
+        id: L.stamp(layer),
+        lat: layer.feature.geometry.coordinates[1],
+        lng: layer.feature.geometry.coordinates[0]
+      });
+    }
+  }
 })
 $.getJSON("data/lyon_velov.geojson", function (data) {
   velovs.addData(data);
@@ -560,8 +581,8 @@ var groupedOverlays = {
   },
   "Filtres urbains": {
     "Quartiers": boroughs,
-    "Lignes de métro & funiculaires": subwayLines,
-    "1Pistes cyclables": pistes_cyclables
+    "Lignes de métro": subwayLines,
+    "Pistes cyclables": pistes_cyclables
   }
 };
 
@@ -634,6 +655,16 @@ $(document).one("ajaxStop", function () {
     limit: 10
   });
 
+  var velovsBH = new Bloodhound({
+    name: "Velovs",
+    datumTokenizer: function(d) {
+      return Bloodhound.tokenizers.whitespace(d.name);
+    },
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    local: velovSearch,
+    limit: 10
+  });
+
   var geonamesBH = new Bloodhound({
     name: "GeoNames",
     datumTokenizer: function (d) {
@@ -669,6 +700,7 @@ $(document).one("ajaxStop", function () {
   camerasBH.initialize();
   projetsBH.initialize();
   bicycleParkingsBH.initialize();
+  velovsBH.initialize();
 
   /* instantiate the typeahead UI */
   $("#searchbox").typeahead({
@@ -681,6 +713,14 @@ $(document).one("ajaxStop", function () {
     source: boroughsBH.ttAdapter(),
     templates: {
       header: "<h4 class='typeahead-header'>Quartiers</h4>"
+    }
+  }, {
+    name: "Velovs",
+    displayKey: "name",
+    source: projetsBH.ttAdapter(),
+    templates: {
+      header: "<h4 class='typeahead-header'><img width='30' height='36' src='assets/img/velov.png'></img>&nbsp;Velo'v</h4>",
+      suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
     }
   }, {
     name: "Projects",

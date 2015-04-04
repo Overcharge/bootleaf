@@ -108,6 +108,14 @@ function syncSidebar() {
       }
     }
   });
+  /* Loop through velov layer and add only features which are in the map bounds */
+  velovs.eachLayer(function (layer) {
+    if (map.hasLayer(velovLayer)) {
+      if (map.getBounds().contains(layer.getLatLng())) {
+        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><i width="16" height="18" class="fa fa-bicycle"></i></td><td class="feature-name">' + layer.feature.properties.adresse + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      }
+    }
+  });
   /* Update list.js featureList */
   featureList = new List("features", {
     valueNames: ["feature-name"]
@@ -326,37 +334,19 @@ $.getJSON("data/connected_cameras.geojson", function (data) {
   cameras.addData(data);
   map.addLayer(cameraLayer);
 });
-/*
-velovLayer = L.layerJSON({
-  url: 'http://api.citybik.es/velov.json',
-  //url: 'https://download.data.grandlyon.com/ws/rdata/jcd_jcdecaux.jcdvelov/all.json',
-  propertyTitle: 'name',
-  propertyLoc: ['latitude', 'longitude'],
-  caching: true,
-  buildPopup: function(data, marker) {
-    return L.marker(latlng, {
-      icon: L.AwesomeMarkers.icon({
-        icon: 'bicycle',
-        markerColor: 'green',
-        prefix: 'fa'
-      })
-    });
-  }
-});*/
 
 var velovLayer = L.geoJson(null);
 var velovs = L.geoJson(null, {
   pointToLayer: function(feature, latlng) {
     return L.marker(latlng, {
       icon: L.icon({
-        icon: 'assets/img/velov.png'
+        iconUrl: 'assets/img/velov.png'
       })
     });
   },
 })
-$.getJSON("data/lyon.geojson", function (data) {
+$.getJSON("data/lyon_velov.geojson", function (data) {
   velovs.addData(data);
-  map.addLayer(velovLayer);
 });
 
 var bicycleParkingLayer = L.geoJson(null);
@@ -457,6 +447,10 @@ map.on("overlayadd", function(e) {
     markerClusters.addLayer(projects);
     syncSidebar();
   }
+  if (e.layer === velovLayer) {
+    markerClusters.addLayer(velovs);
+    syncSidebar();
+  }
 });
 
 map.on("overlayremove", function(e) {
@@ -470,6 +464,10 @@ map.on("overlayremove", function(e) {
   }
   if (e.layer === projectLayer) {
     markerClusters.removeLayer(projects);
+    syncSidebar();
+  }
+  if (e.layer === velovLayer) {
+    markerClusters.removeLayer(velovs);
     syncSidebar();
   }
 });
@@ -557,13 +555,13 @@ var groupedOverlays = {
     "<i width='30' height='36' class='fa fa-bicycle'>&nbsp;Parcs à vélos": bicycleParkingLayer,
     "<i width='30' height='36' class='fa fa-comments-o'>&nbsp;Projets participatifs": projectLayer,
     "<i width='30' height='36' class='fa fa-video-camera'>&nbsp;Caméras connectées": cameraLayer,
-    "<i width='30' height='36' class='fa fa-bicycle'>&nbsp;Stations Velov": velovLayer,
+    "<i width='30' height='36' class='fa fa-bicycle'>&nbsp;Stations Velov": velovLayer
 
   },
   "Filtres urbains": {
     "Quartiers": boroughs,
     "Lignes de métro & funiculaires": subwayLines,
-    "Pistes cyclables": pistes_cyclables
+    "1Pistes cyclables": pistes_cyclables
   }
 };
 

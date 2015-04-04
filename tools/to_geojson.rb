@@ -2,22 +2,26 @@ require 'json'
 file = File.read('../data/Lyon.json')
 hash = JSON.parse(file)
 f = ''
-hash.each do |k,_v|
+hash.each_with_index do |k,_v, index|
     f << "{\n"
-    f << "  'type': 'Feature',\n"
-    f << "  'properties': {\n"
-    f << """     'name': '#{k['name']}'\n"""
+    f << %Q(   "type": "Feature",\n)
+    f << %Q(   "properties": {\n)
+    f << %Q(   "name": "#{k['name']}"\n)
     f << "   },\n"
-    f << "  'geometry': {\n"
-    f << "    'type': 'Point',\n"
-    f << """    'coordinates': [#{k['latitude']},#{k['longitude']}]\n"""
+    f << %Q(   "geometry": {\n)
+    f << %Q(     "type": "Point",\n)
+    f << %Q(     "coordinates": [#{k['longitude']},#{k['latitude']}]\n)
     f << "   }\n"
-    f <<"},\n"
+    if hash.size-1 == index
+      f <<"}\n"
+    else
+      f <<"},\n"
+    end
 end
-File.open('../data/lyon.geojson', 'w') do |file|
+File.open('../data/lyon_velov.geojson', 'w') do |file|
   file << "{"
-  file << "'type': 'FeatureCollection',"
-  file << "'features': [ "
+  file << %Q("type": "FeatureCollection",)
+  file << %Q("features": [ )
   file << f
   file << "]"
   file << "}"

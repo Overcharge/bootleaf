@@ -98,7 +98,6 @@
                 </thead>
                 <tbody class="list"></tbody>
               </table>
-            </div>
           </div>
         </div>
       </div>
@@ -172,13 +171,16 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">Légende de la carte</h4>
+            <h4 class="modal-title">Comment ça marche ?</h4>
           </div>
           <div class="modal-body">
-            <p>Objets connectés : un marqueur rouge avec un symbole</p>
-            <p>Projets communautaires : un marqueur vert avec une feuille d'arbre</p>
-            <p>Utilisateurs :un avatar</p>
-            <p>Délimitations de quartier, lignes de métros, etc. : traits de couleur</p>
+            <p>1. Connectez votre compte EnergyVox à votre suivi de déplacements et de consommation d'énergie. Soyez vertueux, gagnez des points !</p>
+            <p>2. Visualisez les données de votre quartier en temps réel, et participez à la discussion de la communauté autour de projets energétiques locaux.</p>
+            <p>3. Investissez vos points dans vos projets préférés pour participer à la prise de décision.</p>
+            <p>Vous êtes récompensés pour votre implication dans la communauté.</p>
+            <h4 class="modal-title">Qui finance les projets ?</h4>
+            <p></p>
+            <p>Vos points représentent une fraction d'investissements de l'État pour la transition energétique et des quartiers durables. De plus, certains projets sont déjà en partie financés, ou financés en parallèle par nos partenaires de crowdlending energétique.</p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
@@ -207,14 +209,16 @@
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-    <div class="modal fade" id="featureModal" tabindex="-1" role="dialog">
+    <div class="modal fade" id="featureModal" tabindex="-1" role="dialog" onload="reset('document.getElementById("featureModal").innerHTML(feature.properties.nom)', 'document.getElementById("featureModal").innerHTML(feature.properties.url)', 'Article Title 2', 'fr');">
+
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title text-primary" id="feature-title"></h4>
           </div>
-          <div class="modal-body" id="feature-info"></div>
+          <div class="modal-body" id="feature-info">
+          </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
           </div>

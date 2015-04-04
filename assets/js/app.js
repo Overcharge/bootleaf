@@ -414,7 +414,7 @@ var projects = L.geoJson(null, {
   },
   onEachFeature: function (feature, layer) {
     if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nom</th><td>" + feature.properties.nom + "</td></tr>" + "<tr><th>Description</th><td>" + feature.properties.description + "</td></tr>" + "<table>";
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nom</th><td>" + feature.properties.nom + "</td></tr>" + "<tr><th>Description</th><td>" + feature.properties.description + "</td></tr>"+ "<tr><th>Secteur du porteur</th><td>" + feature.properties.type + "</td></tr>" + "<table>" + feature.properties.img;
       layer.on({
         click: function (e) {
           $("#feature-title-participatif").html(feature.properties.nom);
@@ -710,7 +710,7 @@ $(document).one("ajaxStop", function () {
   }, {
     name: "Velovs",
     displayKey: "name",
-    source: projetsBH.ttAdapter(),
+    source: velovsBH.ttAdapter(),
     templates: {
       header: "<h4 class='typeahead-header'><img width='30' height='36' src='assets/img/velov.png'></img>&nbsp;Velo'v</h4>",
       suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))

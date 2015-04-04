@@ -1,10 +1,10 @@
 {
 "type": "FeatureCollection",
 "features": [
-{"type": "Feature", "properties": { "nom":"Projet de Pak", "description":"Hello world" }, "geometry": {"type": "Point", "coordinates": [ 4.825600, 45.750514] } },
-{"type": "Feature", "properties": { "nom":"Eolienne sur un toit d'immeuble", "description":"Une super éolienne qui produirait une énergie propre, dans un endroit totalement inaccessible au public" }, "geometry": {"type": "Point", "coordinates": [ 4.848581, 45.743123] } },
-{"type": "Feature", "properties": { "nom":"project1", "description":"Hello world" }, "geometry": {"type": "Point", "coordinates": [ 4.822478, 45.753372] } },
-{"type": "Feature", "properties": { "nom":"project2", "description":"Hello world" }, "geometry": {"type": "Point", "coordinates": [ 4.828220, 45.764552] } },
-{"type": "Feature", "properties": { "nom":"project3", "description":"Hello world" }, "geometry": {"type": "Point", "coordinates": [ 4.827077, 45.768762] } }
+{"type": "Feature", "properties": { "nom":"", "description":"Hello world", "type":"privé", "img": "assets/img/project1.jpg"}, "geometry": {"type": "Point", "coordinates": [ 4.825600, 45.750514] } },
+{"type": "Feature", "properties": { "nom":"Eolienne sur un toit d'immeuble", "description":"Une super éolienne qui produirait une énergie propre, dans un endroit totalement inaccessible au public", "type":"privé", "img": "assets/img/project2.jpg" }, "geometry": {"type": "Point", "coordinates": [ 4.848581, 45.743123] } },
+{"type": "Feature", "properties": { "nom":"project1", "description":"Hello world", "type":"privé", "img": "assets/img/project3.jpg" }, "geometry": {"type": "Point", "coordinates": [ 4.822478, 45.753372] } },
+{"type": "Feature", "properties": { "nom":"project2", "description":"Hello world", "type":"privé", "img": "assets/img/project4.jpg" }, "geometry": {"type": "Point", "coordinates": [ 4.828220, 45.764552] } },
+{"type": "Feature", "properties": { "nom":"Rénovation de l'isolation de la Mairie du 8ème", "description":"Le conseil de Quartier du 8ème arrondissement soumet à l'étude le projet de rénovation de l'isolation de la mairie et de ses bâtiments connexes. Le financement serait assuré à 100 % par le budget de la ville de Lyon, cependant l'utilisation de ces fonds empêcherait l'investissement courant 2016 sur le projet de microusine à énergies renouvelable dans le 8ème arrondissement.", "type":"public", "img": "<img class='img-responsive' src='http://www.radioespace.com/media/infos//mairie8e.jpg'>" }, "geometry": {"type": "Point", "coordinates": [4.8734769, 45.739137] } }
 ]
 }

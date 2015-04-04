@@ -22,6 +22,12 @@ $("#about-btn").click(function() {
   return false;
 });
 
+$("#community-btn").click(function() {
+  $("#communityModal").modal("show");
+  $(".navbar-collapse.in").collapse("hide");
+  return false;
+});
+
 $("#full-extent-btn").click(function() {
   map.fitBounds(boroughs.getBounds());
   $(".navbar-collapse.in").collapse("hide");
@@ -145,6 +151,10 @@ var highlightStyle = {
   fillOpacity: 0.7,
   radius: 10
 };
+
+function add() {
+
+}
 
 var pistes_cyclables = L.geoJson(null, {
   style: function (feature) {

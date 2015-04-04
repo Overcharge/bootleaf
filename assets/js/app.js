@@ -146,8 +146,6 @@ var highlightStyle = {
   radius: 10
 };
 
-
-
 var pistes_cyclables = L.geoJson(null, {
   style: function (feature) {
     return {
@@ -328,16 +326,24 @@ $.getJSON("data/connected_cameras.geojson", function (data) {
   cameras.addData(data);
   map.addLayer(cameraLayer);
 });
-
+/*
 velovLayer = L.layerJSON({
   url: 'http://api.citybik.es/velov.json',
-  propertyTitle: 'tags.name',
-  propertyLoc: ['tags.latitude','tags.longitude'],
+  //url: 'https://download.data.grandlyon.com/ws/rdata/jcd_jcdecaux.jcdvelov/all.json',
+  propertyTitle: 'name',
+  propertyLoc: ['latitude', 'longitude'],
+  caching: true,
   buildPopup: function(data, marker) {
-    return data.tags.name || null;
+    return L.marker(latlng, {
+      icon: L.AwesomeMarkers.icon({
+        icon: 'bicycle',
+        markerColor: 'green',
+        prefix: 'fa'
+      })
+    });
   }
-});
-/*
+});*/
+
 var velovLayer = L.geoJson(null);
 var velovs = L.geoJson(null, {
   pointToLayer: function(feature, latlng) {
@@ -348,14 +354,10 @@ var velovs = L.geoJson(null, {
     });
   },
 })
-velov_list = JSON.parse("data/Lyon.json");
-for (var i = 0, item; item = velov_list[i++];) {
-  velovs.addData
-}
-$.getJSON("data/Lyon.json", function (data) {
+$.getJSON("data/lyon.geojson", function (data) {
   velovs.addData(data);
   map.addLayer(velovLayer);
-});*/
+});
 
 var bicycleParkingLayer = L.geoJson(null);
 var bicycleParkings = L.geoJson(null, {
@@ -393,7 +395,6 @@ var bicycleParkings = L.geoJson(null, {
 $.getJSON("data/parc_a_velos.geojson", function (data) {
   bicycleParkings.addData(data);
   map.addLayer(bicycleParkingLayer);
-  map.addLayer(velovLayer);
 });
 
 var projectLayer = L.geoJson(null);
@@ -555,7 +556,9 @@ var groupedOverlays = {
   "Objets d'intérêt": {
     "<i width='30' height='36' class='fa fa-bicycle'>&nbsp;Parcs à vélos": bicycleParkingLayer,
     "<i width='30' height='36' class='fa fa-comments-o'>&nbsp;Projets participatifs": projectLayer,
-    "<i width='30' height='36' class='fa fa-video-camera'>&nbsp;Caméras connectées": cameraLayer
+    "<i width='30' height='36' class='fa fa-video-camera'>&nbsp;Caméras connectées": cameraLayer,
+    "<i width='30' height='36' class='fa fa-bicycle'>&nbsp;Stations Velov": velovLayer,
+
   },
   "Filtres urbains": {
     "Quartiers": boroughs,

@@ -133,24 +133,24 @@
                   <li><a href="data/subways.geojson" download="metro_tcl.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Métro TCL</a></li>
                   <li><a href="data/connected_cameras.geojson" download="cameras_connectees.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Caméras connectées</a></li>
                   <li><a href="data/pistes_cyclables.geojson" download="pistes_cyclables.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Pistes cyclables</a></li>
+                  <li><a href="data/lyon_velov.geojson" download="lyon_velov.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Stations Velo'v</a></li>
                 </ul>
             </li>
             </ul>
 
             <div class="tab-content" id="aboutTabsContent">
               <div class="tab-pane fade active in" id="about">
-                <p>EnergyVox est une plateforme </p>
-                <div class="panel panel-primary">
-                  <div class="panel-heading">Features</div>
-                  <ul class="list-group">
-                    <li class="list-group-item">Fullscreen mobile-friendly map template with responsive navbar and modal placeholders</li>
-                    <li class="list-group-item">jQuery loading of external GeoJSON files</li>
-                    <li class="list-group-item">Logical multiple layer marker clustering via the <a href="https://github.com/Leaflet/Leaflet.markercluster" target="_blank">leaflet marker cluster plugin</a></li>
-                    <li class="list-group-item">Elegant client-side multi-layer feature search with autocomplete using <a href="http://twitter.github.io/typeahead.js/" target="_blank">typeahead.js</a></li>
-                    <li class="list-group-item">Responsive sidebar feature list synced with map bounds, which includes sorting and filtering via <a href="http://listjs.com/" target="_blank">list.js</a></li>
-                    <li class="list-group-item">Marker icons included in grouped layer control via the <a href="https://github.com/ismyrnow/Leaflet.groupedlayercontrol" target="_blank">grouped layer control plugin</a></li>
-                  </ul>
-                </div>
+                <p>Consommation médiane de votre quartier ces derniers jours, comparée à la vôtre</p>
+                <div id="chart-quartier" style="height: 200px; width: 500px">
+                <script type="text/javascript">
+                  data = [
+                    {"name":"Quartiers anciens", "data": {"2015-04-07 00:00:00 -0800": 3, "2015-04-08 00:00:00 -0800": 4}},
+                    {"name":"Vous", "data": {"2015-04-07 00:00:00 -0800": 5, "2015-04-08 00:00:00 -0800": 3}}
+                  ];
+                  new Chartkick.LineChart("chart-quartier", data);
+                </script></div>
+                <p>En moyenne, le citoyen du quartier <i>Quartiers anciens</i> a engrangé <b>42 vox</b> ce mois-ci. Vous en avez gagné <b>88</b>, félicitations ! Vous êtes 642 ème au classement général !</p>
+                <p>Avez-vous jeté un oeil au dernier projet, au collège de la Tourette à la Croix-Rousse ? Retrouvez-le instantanément sur la carte avec notre recherche intelligente.<p>
               </div>
               <div id="services" class="tab-pane fade">
                 <h3>CitéVerte <input type="checkbox" name="checkboxCiteverte" checked small></h3><p> - vous rapporte 10 % des points engrangés grâce à vos déplacements en mode doux sur <a href="www.citegreen.com">CitéVerte</a> en vox.</p>

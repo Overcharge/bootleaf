@@ -146,9 +146,7 @@ var highlightStyle = {
   radius: 10
 };
 
-function add() {
 
-}
 
 var pistes_cyclables = L.geoJson(null, {
   style: function (feature) {
@@ -331,6 +329,34 @@ $.getJSON("data/connected_cameras.geojson", function (data) {
   map.addLayer(cameraLayer);
 });
 
+velovLayer = L.layerJSON({
+  url: 'http://api.citybik.es/velov.json',
+  propertyTitle: 'tags.name',
+  propertyLoc: ['tags.latitude','tags.longitude'],
+  buildPopup: function(data, marker) {
+    return data.tags.name || null;
+  }
+});
+/*
+var velovLayer = L.geoJson(null);
+var velovs = L.geoJson(null, {
+  pointToLayer: function(feature, latlng) {
+    return L.marker(latlng, {
+      icon: L.icon({
+        icon: 'assets/img/velov.png'
+      })
+    });
+  },
+})
+velov_list = JSON.parse("data/Lyon.json");
+for (var i = 0, item; item = velov_list[i++];) {
+  velovs.addData
+}
+$.getJSON("data/Lyon.json", function (data) {
+  velovs.addData(data);
+  map.addLayer(velovLayer);
+});*/
+
 var bicycleParkingLayer = L.geoJson(null);
 var bicycleParkings = L.geoJson(null, {
   pointToLayer: function(feature, latlng) {
@@ -367,6 +393,7 @@ var bicycleParkings = L.geoJson(null, {
 $.getJSON("data/parc_a_velos.geojson", function (data) {
   bicycleParkings.addData(data);
   map.addLayer(bicycleParkingLayer);
+  map.addLayer(velovLayer);
 });
 
 var projectLayer = L.geoJson(null);

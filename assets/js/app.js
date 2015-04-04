@@ -40,12 +40,6 @@ $("#legend-btn").click(function() {
   return false;
 });
 
-$("#login-btn").click(function() {
-  $("#loginModal").modal("show");
-  $(".navbar-collapse.in").collapse("hide");
-  return false;
-});
-
 $("#list-btn").click(function() {
   $('#sidebar').toggle();
   map.invalidateSize();

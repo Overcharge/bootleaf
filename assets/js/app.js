@@ -339,7 +339,7 @@ var velovs = L.geoJson(null, {
   },
   onEachFeature: function (feature, layer) {
     if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nom</th><td>" + feature.properties.name + "</td></tr>" + "<tr><th>Dernière image capturée</th><td><img width='400' src='" + feature.properties.url + "'></img></td></tr>" + "<table>";
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nom</th><td>" + feature.properties.name + "</td></tr>" + "<table>";
       layer.on({
         click: function (e) {
           $("#feature-title").html("Station Velo'v");
@@ -376,7 +376,7 @@ var bicycleParkings = L.geoJson(null, {
   },
   onEachFeature: function (feature, layer) {
     if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Adresse</th><td>" + feature.properties.adresse + "</td></tr>" + "<tr><th>Dernière image capturée</th><td><img src='" + feature.properties.url + "'></img></td></tr>" + "<table>";
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Adresse</th><td>" + feature.properties.adresse + "</td></tr>"+ "<table>";
       layer.on({
         click: function (e) {
           $("#feature-title").html(feature.properties.adresse);

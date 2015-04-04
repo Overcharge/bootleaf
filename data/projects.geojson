@@ -1,7 +1,7 @@
 {
 "type": "FeatureCollection",
 "features": [
-{"type": "Feature", "properties": { "nom":"", "description":"Hello world", "type":"privé", "img": "assets/img/project1.jpg"}, "geometry": {"type": "Point", "coordinates": [ 4.825600, 45.750514] } },
+{"type": "Feature", "properties": { "nom":"Panneaux solaires sur le collège de la Tourette à la Croix-Rousse", "description":"Afin de réduire la facture énergétique et l'empreinte environnementale du collège de la Tourrete, nous souhaitons installer 28 panneaux solaires via la prestation d'une entreprise privée et compétitive. L'orientation et l'ensoleillement sur la Croix-Rousse sont idéals pour ce projet.", "type":"privé", "img": "<img class='img-responsive' src='http://www.ia69.ac-lyon.fr/publicmedia/original/488/699/fr/Tourette.png'>"}, "geometry": {"type": "Point", "coordinates": [ 4.8304761, 45.775323] } },
 {"type": "Feature", "properties": { "nom":"Eolienne sur un toit d'immeuble", "description":"Une super éolienne qui produirait une énergie propre, dans un endroit totalement inaccessible au public", "type":"privé", "img": "assets/img/project2.jpg" }, "geometry": {"type": "Point", "coordinates": [ 4.848581, 45.743123] } },
 {"type": "Feature", "properties": { "nom":"project1", "description":"Hello world", "type":"privé", "img": "assets/img/project3.jpg" }, "geometry": {"type": "Point", "coordinates": [ 4.822478, 45.753372] } },
 {"type": "Feature", "properties": { "nom":"project2", "description":"Hello world", "type":"privé", "img": "assets/img/project4.jpg" }, "geometry": {"type": "Point", "coordinates": [ 4.828220, 45.764552] } },

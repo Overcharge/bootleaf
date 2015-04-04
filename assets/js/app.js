@@ -1,7 +1,10 @@
 var map, featureList, boroughSearch = [], bicycleParkingSearch = [], cameraSearch = [];
 var projectSearch = [], velovSearch = [];
 
+$.fn.bootstrapSwitch.defaults.size = 'small';
 $("[name='checkboxCiteverte']").bootstrapSwitch();
+$("[name='checkboxEdf']").bootstrapSwitch();
+$("[name='checkboxGazpar']").bootstrapSwitch();
 
 $(window).resize(function() {
   sizeLayerControl();
